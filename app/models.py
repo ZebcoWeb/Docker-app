@@ -5,7 +5,7 @@ from django.db import models
 
 
 class App(models.Model):
-    name = models.CharField(min_length=2, max_length=100)
+    name = models.CharField(max_length=100)
     image = models.CharField(max_length=150)
     envs = models.JSONField(blank=True, null=True)
     command = models.CharField(max_length=200, blank=True, null=True)

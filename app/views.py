@@ -49,9 +49,9 @@ class AppListView(generics.ListAPIView):
 class AppUpdateView(generics.GenericAPIView):
     serializer_class = AppSerializer
 
-    def patch(self, request, *args, **kwargs):
+    def patch(self, request, app_id):
         try:
-            app = App.objects.get(id=kwargs["app_id"])
+            app = App.objects.get(id=app_id)
         except App.DoesNotExist:
             return ErrorResponse(
                 message="App does not exist",
