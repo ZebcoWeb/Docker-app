@@ -3,10 +3,11 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
-    path("create/", views.AppCreateView.as_view()),
-    path("<int:app_id>/retrieve/", views.AppRetrieveView.as_view()),
-    path("list/", views.AppListView.as_view()),
-    path("<int:app_id>/update/", views.AppUpdateView.as_view()),
-    path("<int:app_id>/delete/", views.AppDeleteView.as_view()),
+    path("create/", views.AppViewSet.as_view({"post": "create"})),
+    path("<int:app_id>/retrieve/", views.AppViewSet.as_view({"get": "retrieve"})),
+    path("list/", views.AppViewSet.as_view({"get": "list"})),
+    path("<int:app_id>/update/", views.AppViewSet.as_view({"post": "update"})),
+    path("<int:app_id>/delete/", views.AppViewSet.as_view({"get": "destroy"})),
+    path("<int:app_id>/history/", views.AppHistoryListView.as_view()),
     path("<int:app_id>/run/", views.AppRunView.as_view()),
 ]

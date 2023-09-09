@@ -25,7 +25,6 @@ class AppHistory(models.Model):
     app = models.ForeignKey(App, on_delete=models.CASCADE, related_name="history")
     status = models.CharField(max_length=100, choices=Status.choices, default="RUNNING")
     running_time = models.DateTimeField(auto_now_add=True)
-    instance_count = models.IntegerField(default=1)
     image = models.CharField(max_length=100)
     envs = models.JSONField(blank=True, null=True)
     command = models.CharField(max_length=100, blank=True, null=True)
