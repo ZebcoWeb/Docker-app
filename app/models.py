@@ -20,7 +20,7 @@ class App(models.Model):
 class AppHistory(models.Model):
     class Status(models.TextChoices):
         RUNNING = "RUNNING"
-        FINNISHED = "STOPPED"
+        FINNISHED = "FINNISHED"
 
     app = models.ForeignKey(App, on_delete=models.CASCADE, related_name="history")
     status = models.CharField(max_length=100, choices=Status.choices, default="RUNNING")
