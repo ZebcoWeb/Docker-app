@@ -8,6 +8,6 @@ urlpatterns = [
     path("list/", views.AppViewSet.as_view({"get": "list"})),
     path("<int:app_id>/update/", views.AppViewSet.as_view({"post": "update"})),
     path("<int:app_id>/delete/", views.AppViewSet.as_view({"get": "destroy"})),
-    path("<int:app_id>/history/", views.AppHistoryListView.as_view()),
-    path("<int:app_id>/run/", views.AppRunView.as_view()),
+    path("<int:app_id>/history/", views.AppViewSet.as_view({"get": "history"})),
+    path("<int:app_id>/run/", views.AppViewSet.as_view({"get": "run"})),
 ]

@@ -1,5 +1,6 @@
-from rest_framework import generics, viewsets
+from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.decorators import action
 
 from app.serializers import AppSerializer, AppHistorySerializer
 from app.models import App, AppHistory
@@ -12,20 +13,14 @@ class AppViewSet(viewsets.ModelViewSet):
     serializer_class = AppSerializer
     lookup_url_kwarg = "app_id"
 
-
-class AppHistoryListView(generics.ListAPIView):
-    serializer_class = AppHistorySerializer
-    
-    def get(self, request, app_id):
+    @action(methods=["get"], detail=True)
+    def history(self, request, app_id):
         app_history = AppHistory.objects.filter(app__id=app_id)
         serializer = AppHistorySerializer(app_history, many=True)
         return Response(serializer.data)
-
-
-class AppRunView(generics.GenericAPIView):
-    serializer_class = AppHistorySerializer
-
-    def get(self, request, app_id):
+    
+    @action(methods=["get"], detail=True)
+    def run(self, request, app_id):
         try:
             app = App.objects.get(id=app_id)
         except App.DoesNotExist:
