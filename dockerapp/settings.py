@@ -3,6 +3,8 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+from .configs import *
+
 
 load_dotenv()
 
@@ -17,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -30,6 +33,8 @@ INSTALLED_APPS = [
 
     # Local apps
     "app.apps.AppConfig",
+    "users.apps.UsersConfig",
+    "realtime.apps.RealtimeConfig"
 ]
 
 MIDDLEWARE = [
@@ -43,6 +48,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "dockerapp.urls"
+ASGI_APPLICATION = "dockerapp.asgi.application"
 
 TEMPLATES = [
     {
